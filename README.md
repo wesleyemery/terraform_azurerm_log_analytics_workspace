@@ -8,20 +8,19 @@ This Terraform module deploys a new log analytics workspace in Azure.
 provider "azurerm" {
   features {}
 }
-terraform{
-backend "azurerm" {
+terraform {
+  backend "azurerm" {
     resource_group_name   = "tstate"
     storage_account_name  = "tstate23743"
     container_name        = "tstate"
     key                   = "terraform.tfstate"
   }
 }
-module "redis" {
-  source = "git@github.com:openrba/terraform-azurerm-redis.git?v1.0.0"
+
+module "workspace" {
+  source = "git@github.com:wesleyemery/terraform_azurerm_log_analytics_workspace.git"
   location = "eastus"
-  redis_name = "test1"
-  sku_name = "Standard"
-  app_name = "BigID"
+
 }
 
 ```
@@ -31,9 +30,8 @@ module "redis" {
 The following arguments are supported.
 
 - **location** - (Required) The location of where the redis cache is being deployed.
-- **redis_name** - (Required) The redis name for the redis cache, example: redis-infrastructure-sandbox-eastus-${redis_name}.
-- **sku_name** - (Required) The SKU of Redis to use. Possible values are Basic, Standard and Premium.
-- **app_name** - (Required) The app name for the resource group, example: rg-infrastructure-sandbox-eastus-${app_name}.
+- **sku** - (Required) List for sku input variable. Options are: Free, PerNode, Premium, Standard, Standalone, Unlimited, and PerGB2018.
+- **retention_in_days** - (Optional) The workspace data retention in days. Possible values are either 7 (Free Tier only) or range between 30 and 730.
 
 ## Remote State Reference
  Prior to running terraform init run:
