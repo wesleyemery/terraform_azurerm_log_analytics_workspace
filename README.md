@@ -11,7 +11,7 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     resource_group_name   = "tstate"
-    storage_account_name  = "tstate23743"
+    storage_account_name  = "tstate123"
     container_name        = "tstate"
     key                   = "terraform.tfstate"
   }
@@ -38,6 +38,6 @@ The following arguments are supported.
  
  export ARM_ACCESS_KEY=${key}
  
- The key is in the storage account: tstate23743 
+ The key is in the storage account: tstate123 
  
 https://docs.microsoft.com/en-us/azure/developer/terraform/store-state-in-azure-storage
