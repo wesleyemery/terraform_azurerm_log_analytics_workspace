@@ -2,6 +2,13 @@
 
 This Terraform module deploys a new log analytics workspace in Azure.
 
+You require a Log Analytics workspace if you intend on collecting data from the following sources:
+
+Azure resources in your subscription
+On-premises computers monitored by System Center Operations Manager
+Device collections from Configuration Manager
+Diagnostics or log data from Azure storage
+
 ## Example Usage
 
 ```hcl
